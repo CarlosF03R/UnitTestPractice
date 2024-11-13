@@ -11,7 +11,7 @@ using std::string;
 */
 int Password::count_leading_characters(string phrase){
   int repetition = 1;
-  int index = 0;
+  int index = 0;//If empty the length is -1 so underflow but no error?
   while( index < phrase.length()-1 && phrase[index] == phrase[index+1] ){
     repetition++;
     index++;
@@ -25,5 +25,17 @@ int Password::count_leading_characters(string phrase){
   letter and at least one lower-case letter
 */
 bool Password::has_mixed_case(string pass){
-  return false;
+	bool has_upper = false;
+    	bool has_lower = false;
+	for(char c : pass){
+		if(std::isupper(c)){
+			has_upper = true;
+		}else if(std::islower(c)){
+				has_lower = true;
+		}
+        	if(has_upper && has_lower){
+            		return true;
+        	}
+    }
+    return (has_upper && has_lower);
 }
